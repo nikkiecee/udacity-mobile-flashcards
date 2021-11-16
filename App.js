@@ -1,19 +1,28 @@
 // import { StatusBar } from "expo-status-bar";
-import 'react-native-gesture-handler';
+import "react-native-gesture-handler";
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, StatusBar, View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { MaterialIcons, FontAwesome } from "@expo/vector-icons";
+import Constants from "expo-constants";
 import { blue, gray } from "./utils/colors";
-import DeckListNavigator from './navigator/DeckListNavigator'
+import DeckListNavigator from "./navigator/DeckListNavigator";
 import NewDeckNavigator from "./navigator/NewDeckNavigator";
 
 const Tab = createBottomTabNavigator();
 
+function UdaciStatusBar ({ backgroundColor, props }) {
+  return (
+    <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
+      <StatusBar translucent backgroundColor={backgroundColor} {...props} />
+    </View>
+  );
+};
+
 const TabNavigator = () => (
   <Tab.Navigator
-  screenOptions={{headerShown:false}}
+    screenOptions={{ headerShown: false }}
     tabBarOptons={{
       activeTintColor: blue,
       inactiveTintColor: gray,
@@ -42,9 +51,12 @@ const TabNavigator = () => (
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <TabNavigator />
-    </NavigationContainer>
+    <View style={{flex: 1}}>
+      <UdaciStatusBar backgroundColor={blue} barstyle="light-content" />
+      <NavigationContainer>
+        <TabNavigator />
+      </NavigationContainer>
+    </View>
   );
 }
 

@@ -17,11 +17,12 @@ const DeckListNavigator = () => {
       screenOptions={{
         headerStyle: { backgroundColor: blue },
         headerTintColor: white,
+        headerTitleAlign: 'center'
       }}
     >
-      <Stack.Screen name="DeckList" component={DeckList} />
+      <Stack.Screen name="All Decks" component={DeckList} />
       <Stack.Screen name="Deck" component={Deck} />
-      <Stack.Screen name="NewCard" component={NewCard} />
+      <Stack.Screen name="New Card" component={NewCard} />
       <Stack.Screen name="Quiz" component={Quiz} />
       <Stack.Screen name="Results" component={Results} />
     </Stack.Navigator>

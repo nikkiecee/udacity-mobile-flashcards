@@ -12,9 +12,10 @@ const NewDeckNavigator = () => {
       screenOptions={{
         headerStyle: { backgroundColor: blue },
         headerTintColor: white,
+        headerTitleAlign: 'center'
       }}
     >
-      <Stack.Screen name="NewDeck" component={NewDeck} />
+      <Stack.Screen name="Create New Deck" component={NewDeck} />
     </Stack.Navigator>
   );
 };
