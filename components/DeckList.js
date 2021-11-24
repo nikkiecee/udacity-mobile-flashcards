@@ -1,13 +1,36 @@
-import React from "react";
-import { View, StyleSheet, Button, Text } from "react-native";
+import React, { Component } from "react";
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+} from "react-native";
+import { connect } from "react-redux";
+import { handleInitialData } from "../actions/index";
 
-export default function DeckList({ navigation }) {
-  return (
-    <View style={styles.container}>
-      <Text>This is DeckList Page</Text>
-      <Button title="To Deck" onPress={() => navigation.navigate("Deck")} />
-    </View>
-  );
+class DeckList extends Component {
+  componentDidMount() {
+    this.props.dispatch(handleInitialData());
+  }
+  render() {
+    const { decks} = this.props
+console.log(decks)
+    return (
+      <SafeAreaView style={styles.container}>
+        {Object.keys(decks).map((deck) => {
+                const { title, questions } = decks[deck]
+                return (
+                    <TouchableOpacity key={deck} onPress={() => navigation.navigate('DeckView', {deck})}>
+                        <Text> {title} </Text>
+                        <Text> {questions.length} questions </Text>
+                    </TouchableOpacity>
+
+                )
+            })}
+      </SafeAreaView>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -18,3 +41,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+function mapStateToProps(decks) {
+  console.log(decks);
+  return {
+    decks,
+  };
+}
+
+export default connect(mapStateToProps)(DeckList);

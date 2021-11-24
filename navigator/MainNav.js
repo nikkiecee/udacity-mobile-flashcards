@@ -1,9 +1,9 @@
 import React from "react";
 import { StyleSheet } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
-import DeckList from "../components/DeckList";
+import HomeNav from "./HomeNav";
 import Deck from "../components/Deck";
-import NewCard from "../components/NewCard";
+import AddCard from "../components/AddCard";
 import Quiz from "../components/Quiz";
 import Results from "../components/Results";
 import { blue, white } from "../utils/colors";
@@ -13,16 +13,20 @@ const Stack = createStackNavigator();
 const DeckListNavigator = () => {
   return (
     <Stack.Navigator
-      initialRouteName="DeckList"
+      initialRouteName="Home"
       screenOptions={{
         headerStyle: { backgroundColor: blue },
         headerTintColor: white,
-        headerTitleAlign: 'center'
+        headerTitleAlign: "center",
       }}
     >
-      <Stack.Screen name="All Decks" component={DeckList} />
+      <Stack.Screen
+        name="Home"
+        component={HomeNav}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen name="Deck" component={Deck} />
-      <Stack.Screen name="New Card" component={NewCard} />
+      <Stack.Screen name="AddCard" component={AddCard} />
       <Stack.Screen name="Quiz" component={Quiz} />
       <Stack.Screen name="Results" component={Results} />
     </Stack.Navigator>
